@@ -330,6 +330,10 @@ header {
   transform: translateY(-61px);
 }
 
+.hero-text-box {
+  transform: translateY(27px);
+}
+
 .hero-logo-container {
   margin-bottom: 1rem;
 }
@@ -897,7 +901,6 @@ header {
 }
 
 /* --- App Screen 2: Daily Sadhana (List & Rings) --- */
-.screen-sadhana {}
 
 .sadhana-header {
   margin-bottom: 1rem;
@@ -1219,7 +1222,6 @@ header {
 }
 
 /* --- App Screen 5: Reflection (Journal / Growth) --- */
-.screen-reflection {}
 
 .reflection-title {
   font-family: var(--font-serif);
