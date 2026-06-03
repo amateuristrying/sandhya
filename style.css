@@ -1646,7 +1646,7 @@ footer {
   margin: 0 auto;
   position: relative;
   z-index: 2;
-  transform: translate(-123px, -64px);
+  transform: translate(-40px, -64px);
 }
 
 .footer-nav {
