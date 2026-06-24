@@ -151,33 +151,8 @@ function initMockupController() {
   let reflectionTimer = null;
   let timerInterval = null;
   let activeIndex = 0;
-
-  // Handle scroll progress and update active state
-  function updateMockupOnScroll() {
-    const rect = wrapper.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    // Calculate total height that can be scrolled through
-    const totalScrollable = rect.height - windowHeight;
-    if (totalScrollable <= 0) return;
-
-    // Current scroll relative to wrapper top
-    const currentScroll = -rect.top;
-
-    // Get progress percentage (0 to 1)
-    let progress = currentScroll / totalScrollable;
-    progress = Math.max(0, Math.min(1, progress));
-
-    const totalSteps = items.length;
-    let index = Math.floor(progress * totalSteps);
-    if (index >= totalSteps) index = totalSteps - 1;
-    if (index < 0) index = 0;
-
-    // Only update if index has changed to prevent recalculations and resets
-    if (index !== activeIndex) {
-      setActiveStep(index);
-    }
-  }
+  let rotationInterval = null;
+  let resumeTimer = null;
 
   function setActiveStep(index) {
     activeIndex = index;
@@ -221,34 +196,65 @@ function initMockupController() {
     });
   }
 
-  // Bind click listeners for smooth navigation
+  function startAutoRotation() {
+    if (rotationInterval) clearInterval(rotationInterval);
+    rotationInterval = setInterval(() => {
+      let nextIndex = (activeIndex + 1) % items.length;
+      setActiveStep(nextIndex);
+    }, 4000);
+  }
+
+  function stopAutoRotation() {
+    if (rotationInterval) {
+      clearInterval(rotationInterval);
+      rotationInterval = null;
+    }
+    if (resumeTimer) {
+      clearTimeout(resumeTimer);
+      resumeTimer = null;
+    }
+  }
+
+  function startAutoRotationWithDelay() {
+    if (resumeTimer) clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => {
+      startAutoRotation();
+    }, 6000);
+  }
+
+  // Bind hover (mouseenter) and click listeners
   items.forEach((item, idx) => {
+    item.addEventListener('mouseenter', () => {
+      stopAutoRotation();
+      setActiveStep(idx);
+    });
+
+    item.addEventListener('mouseleave', () => {
+      startAutoRotation();
+    });
+
     item.addEventListener('click', (e) => {
       e.preventDefault();
-
-      const rect = wrapper.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const totalScrollable = rect.height - windowHeight;
-      const wrapperTop = rect.top + window.pageYOffset;
-
-      // Calculate center of scroll region for this step
-      const totalSteps = items.length;
-      const targetProgress = (idx + 0.5) / totalSteps;
-      const targetScroll = wrapperTop + (totalScrollable * targetProgress);
-
-      window.scrollTo({
-        top: targetScroll,
-        behavior: 'smooth'
-      });
+      stopAutoRotation();
+      setActiveStep(idx);
+      startAutoRotationWithDelay();
     });
   });
 
-  // Track window scroll
-  window.addEventListener('scroll', updateMockupOnScroll, { passive: true });
-  window.addEventListener('resize', updateMockupOnScroll, { passive: true });
+  // Bind click/tap on the mockup itself (great for mobile)
+  const mockupEl = document.querySelector('.phone-mockup');
+  if (mockupEl) {
+    mockupEl.addEventListener('click', () => {
+      stopAutoRotation();
+      let nextIndex = (activeIndex + 1) % items.length;
+      setActiveStep(nextIndex);
+      startAutoRotationWithDelay();
+    });
+  }
 
-  // Initial trigger
-  updateMockupOnScroll();
+  // Initial setup: activate the first item and start auto rotation
+  setActiveStep(0);
+  startAutoRotation();
 
   // Unique trigger setups for each preview screen
   function triggerSpecialScreenAnimation(screenName, element) {

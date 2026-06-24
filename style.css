@@ -582,20 +582,18 @@ header {
 /* Sticky Wrapper to capture scroll height */
 .experience-sticky-wrapper {
   position: relative;
-  height: 400vh;
-  /* Determines the duration of the scroll-sticky sequence */
+  height: auto;
 }
 
 /* Sticky Container that locks content in view */
 .experience-sticky-container {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow: hidden;
+  position: relative;
+  height: auto;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2rem 0;
+  padding: var(--section-padding) 0;
 }
 
 .experience-grid {
