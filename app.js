@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initAudioSanctuary();
   initWordReveal();
   initScrollLock();
-  initHeaderAdjuster();
 });
 
 /**
@@ -750,42 +749,6 @@ function initScrollLock() {
       updateIndexFromScroll();
     }
   });
-}
-
-/**
- * Interactive Header Position/Scale Adjuster
- * Connects the range input sliders to dynamically transform the experience section header
- */
-function initHeaderAdjuster() {
-  const header = document.getElementById('experience-header');
-  const sliderX = document.getElementById('adjust-x');
-  const sliderY = document.getElementById('adjust-y');
-  const sliderScale = document.getElementById('adjust-scale');
-
-  const valX = document.getElementById('val-x');
-  const valY = document.getElementById('val-y');
-  const valScale = document.getElementById('val-scale');
-
-  if (!header || !sliderX || !sliderY || !sliderScale) return;
-
-  function updateTransform() {
-    const x = sliderX.value;
-    const y = sliderY.value;
-    const scale = sliderScale.value;
-
-    header.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
-    
-    valX.textContent = `${x}px`;
-    valY.textContent = `${y}px`;
-    valScale.textContent = `${parseFloat(scale).toFixed(2)}x`;
-  }
-
-  sliderX.addEventListener('input', updateTransform);
-  sliderY.addEventListener('input', updateTransform);
-  sliderScale.addEventListener('input', updateTransform);
-
-  // Initial trigger
-  updateTransform();
 }
 
 
