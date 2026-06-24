@@ -168,11 +168,29 @@
         <div class="container">
 
           <div style="text-align: center; margin-bottom: 2rem;">
-            <span class="philosophy-title-small">Core Experience</span>
-            <h2 class="section-title">A Sanctuary in Your Pocket</h2>
-            <p class="section-subtitle reveal-words" style="margin: 0 auto 3rem;">
-              Scroll to explore how Sandhya reframes your digital space.
-            </p>
+            <div id="experience-header" style="transition: none; transform-origin: center; display: inline-block;">
+              <span class="philosophy-title-small">Core Experience</span>
+              <h2 class="section-title" style="margin-bottom: 0.5rem;">A Sanctuary in Your Pocket</h2>
+            </div>
+
+            <!-- Position and Scale Adjuster Panel -->
+            <div class="header-adjuster" style="margin: 1.5rem auto 1rem; display: flex; gap: 1.5rem; justify-content: center; align-items: center; max-width: 460px; background: rgba(244, 241, 235, 0.65); padding: 0.85rem 1.25rem; border-radius: 12px; border: 1px solid rgba(132, 121, 107, 0.15); backdrop-filter: blur(8px);">
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
+                <label for="adjust-x" style="font-size: 0.65rem; color: var(--color-bronze); font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">X Offset</label>
+                <input type="range" id="adjust-x" min="-150" max="150" value="0" style="width: 90px; accent-color: var(--color-gold); cursor: pointer;">
+                <span id="val-x" style="font-size: 0.6rem; color: var(--color-charcoal); font-family: var(--font-sans);">0px</span>
+              </div>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
+                <label for="adjust-y" style="font-size: 0.65rem; color: var(--color-bronze); font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Y Offset</label>
+                <input type="range" id="adjust-y" min="-150" max="150" value="0" style="width: 90px; accent-color: var(--color-gold); cursor: pointer;">
+                <span id="val-y" style="font-size: 0.6rem; color: var(--color-charcoal); font-family: var(--font-sans);">0px</span>
+              </div>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
+                <label for="adjust-scale" style="font-size: 0.65rem; color: var(--color-bronze); font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Scale</label>
+                <input type="range" id="adjust-scale" min="0.5" max="2" step="0.05" value="1" style="width: 90px; accent-color: var(--color-gold); cursor: pointer;">
+                <span id="val-scale" style="font-size: 0.6rem; color: var(--color-charcoal); font-family: var(--font-sans);">1.00x</span>
+              </div>
+            </div>
           </div>
 
           <div class="experience-grid">
