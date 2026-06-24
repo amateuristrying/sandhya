@@ -174,10 +174,29 @@
             </div>
           </div>
 
+          <!-- Options List Position and Scale Adjuster Panel -->
+          <div class="list-adjuster" style="margin: 0.5rem auto 1.5rem; display: flex; gap: 1.5rem; justify-content: center; align-items: center; max-width: 460px; background: rgba(244, 241, 235, 0.65); padding: 0.85rem 1.25rem; border-radius: 12px; border: 1px solid rgba(132, 121, 107, 0.15); backdrop-filter: blur(8px); z-index: 10; position: relative;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
+              <label for="list-adjust-x" style="font-size: 0.65rem; color: var(--color-bronze); font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">List X Offset</label>
+              <input type="range" id="list-adjust-x" min="-150" max="150" value="0" style="width: 90px; accent-color: var(--color-gold); cursor: pointer;">
+              <span id="list-val-x" style="font-size: 0.6rem; color: var(--color-charcoal); font-family: var(--font-sans);">0px</span>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
+              <label for="list-adjust-y" style="font-size: 0.65rem; color: var(--color-bronze); font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">List Y Offset</label>
+              <input type="range" id="list-adjust-y" min="-150" max="150" value="0" style="width: 90px; accent-color: var(--color-gold); cursor: pointer;">
+              <span id="list-val-y" style="font-size: 0.6rem; color: var(--color-charcoal); font-family: var(--font-sans);">0px</span>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
+              <label for="list-adjust-scale" style="font-size: 0.65rem; color: var(--color-bronze); font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">List Scale</label>
+              <input type="range" id="list-adjust-scale" min="0.5" max="2" step="0.05" value="1" style="width: 90px; accent-color: var(--color-gold); cursor: pointer;">
+              <span id="list-val-scale" style="font-size: 0.6rem; color: var(--color-charcoal); font-family: var(--font-sans);">1.00x</span>
+            </div>
+          </div>
+
           <div class="experience-grid">
             <!-- Interactive Controls -->
             <div class="experience-list-wrapper">
-              <div class="experience-list">
+              <div class="experience-list" id="experience-list" style="transition: none; transform-origin: left center;">
 
                 <button class="experience-item active" data-screen="panchang" id="exp-panchang" aria-expanded="true">
                   <span class="exp-num" aria-hidden="true">01</span>

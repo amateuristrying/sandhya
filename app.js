@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAudioSanctuary();
   initWordReveal();
   initScrollLock();
+  initListAdjuster();
 });
 
 /**
@@ -749,6 +750,42 @@ function initScrollLock() {
       updateIndexFromScroll();
     }
   });
+}
+
+/**
+ * Interactive Options List Position/Scale Adjuster
+ * Connects the range input sliders to dynamically transform the experience list container
+ */
+function initListAdjuster() {
+  const list = document.getElementById('experience-list');
+  const sliderX = document.getElementById('list-adjust-x');
+  const sliderY = document.getElementById('list-adjust-y');
+  const sliderScale = document.getElementById('list-adjust-scale');
+
+  const valX = document.getElementById('list-val-x');
+  const valY = document.getElementById('list-val-y');
+  const valScale = document.getElementById('list-val-scale');
+
+  if (!list || !sliderX || !sliderY || !sliderScale) return;
+
+  function updateTransform() {
+    const x = sliderX.value;
+    const y = sliderY.value;
+    const scale = sliderScale.value;
+
+    list.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+    
+    valX.textContent = `${x}px`;
+    valY.textContent = `${y}px`;
+    valScale.textContent = `${parseFloat(scale).toFixed(2)}x`;
+  }
+
+  sliderX.addEventListener('input', updateTransform);
+  sliderY.addEventListener('input', updateTransform);
+  sliderScale.addEventListener('input', updateTransform);
+
+  // Initial trigger
+  updateTransform();
 }
 
 
