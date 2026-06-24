@@ -12,35 +12,37 @@
   --bg-secondary: #F4F1EB;
   --bg-tertiary: #EFEAE3;
   --bg-parchment: #EAE4DB;
-  
+
   /* Text & Tone Colors */
   --color-charcoal: #2A2825;
   --color-charcoal-light: #4A4640;
   --color-bronze: #84796B;
   --color-bronze-light: #ABA296;
-  
+
   /* Accents */
   --color-saffron: #D37546;
   --color-saffron-muted: #D18962;
   --color-gold: #C2A370;
   --color-gold-light: #D9C39E;
-  
+
   /* Fonts */
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  
+
   /* Transitions (Slower, deliberate, mindful) */
   --transition-slow: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-medium: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-fast: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  
+
   /* Spacing */
   --section-padding: 8rem 2rem;
   --max-width: 1200px;
 }
 
 /* --- Base Styles --- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -50,7 +52,7 @@ html {
   font-size: 16px;
   scroll-behavior: smooth;
   background-color: var(--bg-primary);
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
 }
 
 body {
@@ -72,13 +74,16 @@ img[src*="sandhya_logo2"] {
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--bg-secondary);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--color-bronze-light);
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-bronze);
 }
@@ -135,7 +140,8 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 2.5rem 0 1.5rem; /* Spacious padding for top placement */
+  padding: 2.5rem 0 1.5rem;
+  /* Spacious padding for top placement */
   z-index: 100;
 }
 
@@ -227,8 +233,13 @@ header {
 }
 
 @keyframes soundwave {
-  0% { height: 2px; }
-  100% { height: 12px; }
+  0% {
+    height: 2px;
+  }
+
+  100% {
+    height: 12px;
+  }
 }
 
 .cta-button {
@@ -317,8 +328,13 @@ header {
 }
 
 @keyframes slow-rotate {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 .hero-content {
@@ -358,8 +374,15 @@ header {
 }
 
 @keyframes breathe-logo {
-  0% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(194, 163, 112, 0)); }
-  100% { transform: scale(1.03); filter: drop-shadow(0 4px 15px rgba(194, 163, 112, 0.15)); }
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(194, 163, 112, 0));
+  }
+
+  100% {
+    transform: scale(1.03);
+    filter: drop-shadow(0 4px 15px rgba(194, 163, 112, 0.15));
+  }
 }
 
 .hero-title {
@@ -440,9 +463,17 @@ header {
 }
 
 @keyframes scroll-dot {
-  0% { transform: translateY(-100%); }
-  50% { transform: translateY(260%); }
-  100% { transform: translateY(260%); }
+  0% {
+    transform: translateY(-100%);
+  }
+
+  50% {
+    transform: translateY(260%);
+  }
+
+  100% {
+    transform: translateY(260%);
+  }
 }
 
 /* --- Philosophy Section --- */
@@ -527,7 +558,7 @@ header {
   margin-top: 2.5rem;
   border-radius: 12px;
   display: block;
-  box-shadow: 
+  box-shadow:
     -12px 12px 32px rgba(42, 40, 37, 0.07),
     -4px 4px 12px rgba(42, 40, 37, 0.03);
   border: 1px solid rgba(132, 121, 107, 0.15);
@@ -536,44 +567,67 @@ header {
 
 .philosophy-image:hover {
   transform: translate(2px, -2px);
-  box-shadow: 
+  box-shadow:
     -15px 15px 38px rgba(42, 40, 37, 0.09),
     -5px 5px 14px rgba(42, 40, 37, 0.04);
 }
 
 /* --- Experience Section & Mockup --- */
 .experience {
-  padding: var(--section-padding);
   background-color: var(--bg-primary);
   position: relative;
   scroll-snap-align: start;
+}
+
+/* Sticky Wrapper to capture scroll height */
+.experience-sticky-wrapper {
+  position: relative;
+  height: 400vh;
+  /* Determines the duration of the scroll-sticky sequence */
+}
+
+/* Sticky Container that locks content in view */
+.experience-sticky-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 0;
 }
 
 .experience-grid {
   display: grid;
   grid-template-columns: 1fr 1.1fr;
   gap: 5rem;
-  align-items: flex-start;
-  margin-top: 4rem;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.experience-list-wrapper {
+  display: flex;
+  flex-direction: column;
 }
 
 /* Left side navigation list */
 .experience-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .experience-item {
   background-color: transparent;
   border: 1px solid rgba(132, 121, 107, 0.15);
   border-radius: 8px;
-  padding: 2rem;
+  padding: 1.5rem 1.8rem;
   text-align: left;
   cursor: pointer;
   transition: var(--transition-medium);
   display: flex;
-  gap: 1.5rem;
+  gap: 1.25rem;
   position: relative;
   overflow: hidden;
 }
@@ -609,46 +663,47 @@ header {
 
 .exp-num {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: var(--color-gold);
   opacity: 0.8;
   line-height: 1;
+  margin-top: 0.2rem;
 }
 
 .exp-details h3 {
   font-family: var(--font-serif);
-  font-size: 1.6rem;
+  font-size: 1.45rem;
   font-weight: 500;
   color: var(--color-charcoal);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   line-height: 1.2;
 }
 
 .exp-details p {
   font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--color-bronze);
   font-weight: 300;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 /* Right side Phone container */
 .experience-mockup-wrapper {
-  position: sticky;
-  top: 8rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  /* Position context for absolute adjuster panels */
 }
 
 /* iPhone Premium CSS Mockup */
 .phone-mockup {
   width: 300px;
-  height: 610px;
+  height: 590px;
   background-color: #1a1715;
   border-radius: 42px;
   padding: 10px;
-  box-shadow: 
+  box-shadow:
     0 25px 60px -10px rgba(42, 40, 37, 0.25),
     0 0 0 1px rgba(132, 121, 107, 0.15),
     inset 0 0 4px 2px rgba(255, 255, 255, 0.05);
@@ -672,13 +727,13 @@ header {
 
 /* Status Bar & Notch */
 .phone-header {
-  height: 44px;
+  height: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 1.5rem;
   position: relative;
-  z-index: 10;
+  z-index: 15;
 }
 
 .notch {
@@ -687,10 +742,10 @@ header {
   left: 50%;
   transform: translateX(-50%);
   width: 110px;
-  height: 26px;
+  height: 22px;
   background-color: #1a1715;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
 }
 
 .time {
@@ -728,23 +783,24 @@ header {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 1rem 1.5rem 2rem;
+  padding: 1rem 1.2rem 1.8rem;
   opacity: 0;
   transform: translateY(10px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   position: absolute;
-  top: 44px;
+  top: 40px;
   left: 0;
   width: 100%;
-  height: calc(100% - 44px);
+  height: calc(100% - 40px);
   pointer-events: none;
+  will-change: opacity, transform;
 }
 
 .app-content.active {
   opacity: 1;
   transform: translateY(0);
-  position: relative;
-  top: 0;
+  z-index: 10;
   pointer-events: auto;
 }
 
@@ -752,17 +808,17 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .app-logo {
-  height: 24px;
+  height: 20px;
   width: auto;
 }
 
 .app-menu-btn {
-  width: 18px;
-  height: 12px;
+  width: 16px;
+  height: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -775,14 +831,39 @@ header {
   width: 100%;
 }
 
-/* --- App Screen 1: Sacred Time (Panchang Dial) --- */
-.screen-panchang {
+.mockup-screen-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Screenshot image layer - overlays interactive markup for visual luxury */
+.mockup-screen-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 5;
+  pointer-events: none;
+  border-radius: 22px;
+  opacity: 1;
+  /* Keep pre-designed screenshots active as primary premium display */
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- App Screen 1: Panchang Calendar --- */
+#screen-panchang {
   text-align: center;
-  align-items: center;
+  align-items: stretch;
 }
 
 .panchang-date {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--color-saffron);
@@ -791,342 +872,309 @@ header {
 
 .panchang-title {
   font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--color-charcoal);
+  margin-bottom: 0.5rem;
+}
+
+.panchang-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  margin-top: 0.5rem;
+  background-color: var(--bg-tertiary);
+  padding: 0.6rem;
+  border-radius: 10px;
+  border: 1px solid rgba(132, 121, 107, 0.1);
+}
+
+.cal-day-lbl {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--color-bronze-light);
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+.cal-day {
+  font-size: 0.7rem;
+  text-align: center;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-charcoal-light);
+  border-radius: 4px;
+  position: relative;
+  cursor: default;
+}
+
+.cal-day.empty {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.cal-day.ekadashi-day {
+  background-color: rgba(211, 117, 70, 0.12);
+  border: 1px solid var(--color-saffron);
+  color: var(--color-saffron);
+  font-weight: 600;
+}
+
+.cal-day.dwadashi-day {
+  background-color: rgba(194, 163, 112, 0.12);
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  font-weight: 600;
+}
+
+.cal-tithi-badge {
+  font-size: 0.45rem;
+  font-weight: 500;
+  position: absolute;
+  top: -12px;
+  background-color: var(--color-charcoal);
+  color: var(--bg-primary);
+  padding: 1px 3px;
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.cal-day:hover .cal-tithi-badge {
+  opacity: 1;
+}
+
+/* --- App Screen 2: Meditate with Sandhya --- */
+#screen-sadhana {
+  text-align: center;
+  align-items: stretch;
+}
+
+.timer-title {
+  font-family: var(--font-serif);
   font-size: 1.25rem;
   color: var(--color-charcoal);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.1rem;
 }
 
-/* Panchang Dial Animation */
-.panchang-dial-container {
-  position: relative;
-  width: 170px;
-  height: 170px;
-  margin: 0.5rem auto 1.5rem;
+.timer-subtitle {
+  font-size: 0.65rem;
+  color: var(--color-bronze-light);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.panchang-dial {
-  width: 100%;
-  height: 100%;
-  border: 1px dashed var(--color-bronze-light);
-  border-radius: 50%;
-  position: relative;
-  animation: dial-rotate 40s linear infinite;
-}
-
-.dial-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  background-color: var(--bg-tertiary);
-  border: 1px solid var(--bg-parchment);
+.minimal-timer-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);
+  margin: 0.75rem auto;
+  width: 140px;
+  height: 140px;
 }
 
-.dial-time {
-  font-family: var(--font-sans);
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: var(--color-charcoal);
-  line-height: 1;
-}
-
-.dial-period {
-  font-size: 0.65rem;
-  color: var(--color-bronze);
-  text-transform: uppercase;
-  margin-top: 0.2rem;
-  letter-spacing: 0.05em;
-}
-
-.dial-marker {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background-color: var(--color-gold);
-  border-radius: 50%;
-  top: -3px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.dial-marker-2 {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background-color: var(--color-saffron);
-  border-radius: 50%;
-  right: -2px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-@keyframes dial-rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.panchang-details {
-  background-color: var(--bg-tertiary);
-  border-radius: 12px;
-  padding: 0.8rem;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-}
-
-.panchang-stat {
-  text-align: left;
-}
-
-.stat-label {
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  color: var(--color-bronze);
-  letter-spacing: 0.05em;
-}
-
-.stat-val {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--color-charcoal);
-}
-
-/* --- App Screen 2: Daily Sadhana (List & Rings) --- */
-
-.sadhana-header {
-  margin-bottom: 1rem;
-}
-
-.sadhana-title {
-  font-family: var(--font-serif);
-  font-size: 1.3rem;
-  color: var(--color-charcoal);
-}
-
-.sadhana-subtitle {
-  font-size: 0.75rem;
-  color: var(--color-bronze);
-}
-
-.sadhana-progress-card {
-  background-color: var(--bg-parchment);
-  border-radius: 12px;
-  padding: 0.8rem 1rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.progress-ring-container {
+.timer-ring {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.progress-ring-svg {
+.timer-ring-svg {
   width: 100%;
   height: 100%;
   transform: rotate(-90deg);
 }
 
-.progress-ring-circle-bg {
+.timer-ring-bg {
   fill: none;
-  stroke: rgba(132, 121, 107, 0.15);
-  stroke-width: 3;
+  stroke: rgba(132, 121, 107, 0.1);
+  stroke-width: 2;
 }
 
-.progress-ring-circle {
+.timer-ring-progress {
   fill: none;
   stroke: var(--color-saffron);
-  stroke-width: 3;
-  stroke-dasharray: 113; /* 2 * pi * r = 2 * 3.1415 * 18 */
-  stroke-dashoffset: 34; /* 70% complete */
+  stroke-width: 2;
+  stroke-dasharray: 283;
+  /* 2 * pi * 45 */
+  stroke-dashoffset: 283;
   stroke-linecap: round;
-  transition: stroke-dashoffset 1.5s ease-in-out;
+  transition: stroke-dashoffset 1s linear;
 }
 
-.progress-text {
+.timer-center {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 0.65rem;
-  font-weight: 600;
-  color: var(--color-charcoal);
-}
-
-.progress-info h4 {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--color-charcoal);
-}
-
-.progress-info p {
-  font-size: 0.65rem;
-  color: var(--color-bronze);
-}
-
-.sadhana-list {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  overflow-y: auto;
-  max-height: 240px;
+  align-items: center;
+  justify-content: center;
 }
 
-.sadhana-item {
+.timer-om {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: var(--color-gold);
+  line-height: 1;
+  margin-bottom: 2px;
+  animation: pulse-om 4s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-om {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.05);
+    opacity: 1;
+    text-shadow: 0 0 10px rgba(194, 163, 112, 0.3);
+  }
+}
+
+.timer-countdown {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-charcoal-light);
+}
+
+.music-pill {
   background-color: var(--bg-tertiary);
-  border-radius: 8px;
-  padding: 0.8rem;
+  border: 1px solid rgba(132, 121, 107, 0.15);
+  border-radius: 30px;
+  padding: 0.4rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 130px;
+  margin: 0.25rem auto 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+}
+
+.music-ctrl-btn {
+  background: none;
+  border: none;
+  color: var(--color-bronze);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: color 0.2s ease, transform 0.1s ease;
+}
+
+.music-ctrl-btn:hover {
+  color: var(--color-charcoal);
+}
+
+.music-ctrl-btn:active {
+  transform: scale(0.9);
+}
+
+.music-ctrl-btn.play-pause-btn {
+  color: var(--color-saffron);
+  background-color: rgba(211, 117, 70, 0.08);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+}
+
+/* --- App Screen 3: Rituals --- */
+#screen-dhyana {
+  text-align: center;
+  align-items: stretch;
+}
+
+.rituals-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--color-charcoal);
+  margin-bottom: 0.1rem;
+}
+
+.rituals-subtitle {
+  font-size: 0.65rem;
+  color: var(--color-bronze-light);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.rituals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  max-height: 210px;
+  overflow-y: auto;
+}
+
+.ritual-card {
+  background-color: var(--bg-tertiary);
+  border: 1px solid rgba(132, 121, 107, 0.08);
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: all 0.3s ease;
+  text-align: left;
 }
 
-.sadhana-item-left {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
+.ritual-card.active {
+  border-color: rgba(194, 163, 112, 0.25);
+  box-shadow: 0 4px 10px rgba(132, 121, 107, 0.03);
 }
 
-.checkbox-circle {
-  width: 16px;
+.ritual-info h5 {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-charcoal);
+  margin-bottom: 2px;
+}
+
+.ritual-info p {
+  font-size: 0.6rem;
+  color: var(--color-bronze);
+}
+
+.ritual-toggle {
+  width: 28px;
   height: 16px;
-  border: 1px solid var(--color-gold);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 8px;
+  background-color: var(--color-bronze-light);
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.checkbox-circle.checked {
+.ritual-toggle::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--bg-primary);
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
+}
+
+.ritual-toggle.active {
   background-color: var(--color-gold);
 }
 
-.checkbox-circle.checked::after {
-  content: '✓';
-  color: var(--bg-primary);
-  font-size: 0.55rem;
-  font-weight: 700;
-}
-
-.sadhana-item-name {
-  font-size: 0.8rem;
-  font-weight: 400;
-  color: var(--color-charcoal);
-}
-
-.sadhana-item-time {
-  font-size: 0.65rem;
-  color: var(--color-bronze);
-}
-
-/* --- App Screen 3: Dhyana (Meditation breathing visualizer) --- */
-.screen-dhyana {
-  text-align: center;
-  align-items: center;
-}
-
-.dhyana-title {
-  font-family: var(--font-serif);
-  font-size: 1.3rem;
-  color: var(--color-charcoal);
-  margin-bottom: 0.2rem;
-}
-
-.dhyana-subtitle {
-  font-size: 0.75rem;
-  color: var(--color-bronze);
-  margin-bottom: 2rem;
-}
-
-/* Breathing Visualizer */
-.breathing-container {
-  width: 180px;
-  height: 180px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 2.5rem;
-}
-
-.breathing-ring-outer {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: rgba(194, 163, 112, 0.05);
-  animation: breathing-wave 8s ease-in-out infinite;
-}
-
-.breathing-ring-inner {
-  position: absolute;
-  width: 80%;
-  height: 80%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(194, 163, 112, 0.15) 0%, rgba(211, 117, 70, 0.05) 100%);
-  animation: breathing-wave-inner 8s ease-in-out infinite;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.breathing-text {
-  font-family: var(--font-serif);
-  font-size: 1.15rem;
-  color: var(--color-charcoal);
-  font-style: italic;
-  animation: breathing-text-anim 8s ease-in-out infinite;
-}
-
-@keyframes breathing-wave {
-  0%, 100% { transform: scale(0.8); opacity: 0.2; }
-  45%, 55% { transform: scale(1.08); opacity: 0.6; }
-}
-
-@keyframes breathing-wave-inner {
-  0%, 100% { transform: scale(0.75); }
-  45%, 55% { transform: scale(1.03); }
-}
-
-@keyframes breathing-text-anim {
-  0%, 100% { content: "Breathe In"; opacity: 0.6; }
-  10%, 40% { opacity: 1; }
-  45%, 55% { opacity: 0.7; }
-  60%, 90% { opacity: 1; }
-}
-
-.dhyana-controls {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  width: 100%;
-}
-
-.dhyana-btn {
-  background-color: var(--bg-parchment);
-  border: 1px solid rgba(132, 121, 107, 0.15);
-  padding: 0.6rem 1.2rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  color: var(--color-charcoal);
-  cursor: pointer;
-  transition: var(--transition-fast);
-}
-
-.dhyana-btn:hover {
-  background-color: var(--bg-tertiary);
+.ritual-toggle.active::after {
+  transform: translateX(12px);
 }
 
 /* --- App Screen 4: Bhakti (Altar / Alarms) --- */
@@ -1164,16 +1212,46 @@ header {
   animation: audio-wave-pulse 1.4s ease-in-out infinite alternate;
 }
 
-.app-content.active .bhakti-wave-bar:nth-child(2) { animation-delay: 0.1s; height: 35px; }
-.app-content.active .bhakti-wave-bar:nth-child(3) { animation-delay: 0.2s; height: 50px; }
-.app-content.active .bhakti-wave-bar:nth-child(4) { animation-delay: 0.3s; height: 75px; }
-.app-content.active .bhakti-wave-bar:nth-child(5) { animation-delay: 0.4s; height: 40px; }
-.app-content.active .bhakti-wave-bar:nth-child(6) { animation-delay: 0.2s; height: 60px; }
-.app-content.active .bhakti-wave-bar:nth-child(7) { animation-delay: 0.1s; height: 25px; }
+.app-content.active .bhakti-wave-bar:nth-child(2) {
+  animation-delay: 0.1s;
+  height: 35px;
+}
+
+.app-content.active .bhakti-wave-bar:nth-child(3) {
+  animation-delay: 0.2s;
+  height: 50px;
+}
+
+.app-content.active .bhakti-wave-bar:nth-child(4) {
+  animation-delay: 0.3s;
+  height: 75px;
+}
+
+.app-content.active .bhakti-wave-bar:nth-child(5) {
+  animation-delay: 0.4s;
+  height: 40px;
+}
+
+.app-content.active .bhakti-wave-bar:nth-child(6) {
+  animation-delay: 0.2s;
+  height: 60px;
+}
+
+.app-content.active .bhakti-wave-bar:nth-child(7) {
+  animation-delay: 0.1s;
+  height: 25px;
+}
 
 @keyframes audio-wave-pulse {
-  0% { transform: scaleY(0.3); opacity: 0.4; }
-  100% { transform: scaleY(1); opacity: 1; }
+  0% {
+    transform: scaleY(0.3);
+    opacity: 0.4;
+  }
+
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
 }
 
 .bhakti-alarm-card {
@@ -1276,8 +1354,15 @@ header {
 }
 
 @keyframes cursor-blink {
-  from, to { background-color: transparent; }
-  50% { background-color: var(--color-saffron); }
+
+  from,
+  to {
+    background-color: transparent;
+  }
+
+  50% {
+    background-color: var(--color-saffron);
+  }
 }
 
 /* Home Screen (default preview state) */
@@ -1500,8 +1585,17 @@ header {
 }
 
 @keyframes pulse-saffron {
-  0%, 100% { transform: scale(1); opacity: 0.3; }
-  50% { transform: scale(1.08); opacity: 0.8; }
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: 0.8;
+  }
 }
 
 .ui-alarm-time {
@@ -1534,7 +1628,7 @@ header {
   transform: translateX(-50%);
   width: 600px;
   height: 300px;
-  background: radial-gradient(ellipse at bottom, rgba(194, 163, 112, 0.08) 0%, rgba(255,255,255,0) 70%);
+  background: radial-gradient(ellipse at bottom, rgba(194, 163, 112, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
   z-index: 0;
 }
 
@@ -1696,6 +1790,8 @@ footer {
   margin-top: 0.5rem;
 }
 
+
+
 /* --- Interactive Scroll Animations --- */
 .reveal {
   opacity: 0;
@@ -1709,23 +1805,96 @@ footer {
 }
 
 /* --- Responsive Adjustments --- */
+.experience-mobile-active-text {
+  display: none;
+  /* Hidden on desktop */
+}
+
 @media (max-width: 992px) {
   .philosophy-grid {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-  
+
+  /* Hide the desktop list, let the grid center the phone */
+  .experience-list-wrapper {
+    display: none;
+  }
+
   .experience-grid {
     grid-template-columns: 1fr;
-    gap: 4rem;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    justify-content: center;
+    justify-items: center;
   }
-  
+
   .experience-mockup-wrapper {
     position: relative;
     top: 0;
-    margin-top: 2rem;
+    transform: scale(0.78);
+    transform-origin: center center;
+    margin: -1rem 0;
+    /* Tighten vertical spacing */
+    height: auto;
+    /* Allow height to adapt */
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    /* Stack phone and adjuster on mobile */
+    align-items: center;
+    gap: 1.5rem;
+    justify-content: center;
   }
-  
+
+
+  /* Mobile active card styling */
+  .experience-mobile-active-text {
+    display: block;
+    position: relative;
+    height: 110px;
+    /* Constrain height to avoid layout shift */
+    margin: 1.5rem auto 0;
+    text-align: center;
+    width: 100%;
+    max-width: 450px;
+    padding: 0 1rem;
+  }
+
+  .mobile-text-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(2px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+
+  .mobile-text-item.active {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    pointer-events: auto;
+  }
+
+  .mobile-text-item h3 {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    color: var(--color-charcoal);
+    margin-bottom: 0.3rem;
+  }
+
+  .mobile-text-item p {
+    font-size: 0.85rem;
+    color: var(--color-bronze);
+    line-height: 1.5;
+  }
+
   .footer-nav {
     flex-wrap: wrap;
     gap: 1.5rem;
@@ -1736,20 +1905,31 @@ footer {
   :root {
     --section-padding: 5rem 1.5rem;
   }
-  
+
   .hero {
     padding-top: 6rem;
   }
-  
+
   .hero-actions {
     flex-direction: column;
     width: 100%;
     max-width: 320px;
     margin: 0 auto 3rem;
   }
-  
+
   .hero-actions .cta-button {
     width: 100%;
+  }
+
+  /* Further scale down mockup on small screens */
+  .experience-mockup-wrapper {
+    transform: scale(0.68);
+    height: 420px;
+  }
+
+  .experience-mobile-active-text {
+    height: 120px;
+    margin-top: 0.5rem;
   }
 }
 
@@ -1763,9 +1943,9 @@ footer {
   opacity: 0.15;
   transform: translateY(12px) translateZ(0);
   filter: blur(1.5px);
-  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1.4s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform, filter;
 }
 
@@ -1774,5 +1954,3 @@ footer {
   transform: translateY(0) translateZ(0);
   filter: blur(0);
 }
-
-

@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Sandhya is a modern spiritual companion designed for people who want depth without dogma. Reconnect with stillness, ritual, self-awareness, and sacred daily rhythms.">
+  <meta name="description"
+    content="Sandhya is a modern spiritual companion designed for people who want depth without dogma. Reconnect with stillness, ritual, self-awareness, and sacred daily rhythms.">
   <title>Sandhya — A Modern Path to Sacred Living</title>
-  
+
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Sandhya" />
+  <link rel="manifest" href="site.webmanifest" />
+
   <!-- SEO & OpenGraph Meta Tags -->
   <meta property="og:title" content="Sandhya — A Modern Path to Sacred Living">
-  <meta property="og:description" content="Reconnect with stillness, ritual, self-awareness, and sacred daily rhythms with Sandhya, a premium spiritual companion app.">
+  <meta property="og:description"
+    content="Reconnect with stillness, ritual, self-awareness, and sacred daily rhythms with Sandhya, a premium spiritual companion app.">
   <meta property="og:image" content="logonew.png">
   <meta property="og:type" content="website">
-  
+
   <!-- Preload Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link rel="stylesheet" href="style.css">
-  
+
   <!-- JSON-LD Structured Data / Schema Markup -->
   <script type="application/ld+json">
   {
@@ -40,6 +50,7 @@
   }
   </script>
 </head>
+
 <body>
 
   <!-- Texture & Noise Overlay -->
@@ -51,10 +62,11 @@
       <a href="#" class="logo-link" id="nav-logo" aria-label="Sandhya Homepage">
         <img src="logonew.png" alt="Sandhya Logo">
       </a>
-      
+
       <div class="nav-actions">
         <!-- Sanctuary Soundscape Toggle -->
-        <button class="soundscape-toggle" id="audio-toggle" aria-label="Toggle ambient soundscape" title="Toggle Sanctuary Soundscape">
+        <button class="soundscape-toggle" id="audio-toggle" aria-label="Toggle ambient soundscape"
+          title="Toggle Sanctuary Soundscape">
           <div class="sound-wave" aria-hidden="true">
             <span></span>
             <span></span>
@@ -62,7 +74,7 @@
           </div>
           <span id="audio-status-text">Audio Sanctuary</span>
         </button>
-        
+
         <a href="#journey" class="cta-button" id="header-cta">Join Journey</a>
       </div>
     </div>
@@ -75,38 +87,39 @@
 
     <!-- Floating Particle Canvas -->
     <canvas id="particle-canvas" aria-hidden="true"></canvas>
-    
+
     <!-- Lotus Sacred Geometry Watermark (Detailed Vector SVG) -->
-    <svg class="lotus-background" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="0.35" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <circle cx="100" cy="100" r="15" stroke-dasharray="1 1"/>
-      <circle cx="100" cy="100" r="30" stroke-dasharray="2 1"/>
-      <circle cx="100" cy="100" r="60"/>
+    <svg class="lotus-background" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="0.35"
+      xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="100" cy="100" r="15" stroke-dasharray="1 1" />
+      <circle cx="100" cy="100" r="30" stroke-dasharray="2 1" />
+      <circle cx="100" cy="100" r="60" />
       <!-- Petals -->
-      <path d="M100 40 C85 65, 85 85, 100 100 C115 85, 115 65, 100 40 Z"/>
-      <path d="M100 160 C85 135, 85 115, 100 100 C115 115, 115 135, 100 160 Z"/>
-      <path d="M40 100 C65 85, 85 85, 100 100 C85 115, 65 115, 40 100 Z"/>
-      <path d="M160 100 C135 85, 115 85, 100 100 C115 115, 135 115, 160 100 Z"/>
+      <path d="M100 40 C85 65, 85 85, 100 100 C115 85, 115 65, 100 40 Z" />
+      <path d="M100 160 C85 135, 85 115, 100 100 C115 115, 115 135, 100 160 Z" />
+      <path d="M40 100 C65 85, 85 85, 100 100 C85 115, 65 115, 40 100 Z" />
+      <path d="M160 100 C135 85, 115 85, 100 100 C115 115, 135 115, 160 100 Z" />
       <!-- Diagonal Petals -->
-      <path d="M57.6 57.6 C75.3 75.3, 85.3 85.3, 100 100 C85.3 85.3, 75.3 75.3, 57.6 57.6 Z"/>
-      <path d="M142.4 142.4 C124.7 124.7, 114.7 114.7, 100 100 C114.7 114.7, 124.7 124.7, 142.4 142.4 Z"/>
-      <path d="M142.4 57.6 C124.7 75.3, 114.7 85.3, 100 100 C114.7 85.3, 124.7 75.3, 142.4 57.6 Z"/>
-      <path d="M57.6 142.4 C75.3 124.7, 85.3 114.7, 100 100 C85.3 114.7, 75.3 124.7, 57.6 142.4 Z"/>
+      <path d="M57.6 57.6 C75.3 75.3, 85.3 85.3, 100 100 C85.3 85.3, 75.3 75.3, 57.6 57.6 Z" />
+      <path d="M142.4 142.4 C124.7 124.7, 114.7 114.7, 100 100 C114.7 114.7, 124.7 124.7, 142.4 142.4 Z" />
+      <path d="M142.4 57.6 C124.7 75.3, 114.7 85.3, 100 100 C114.7 85.3, 124.7 75.3, 142.4 57.6 Z" />
+      <path d="M57.6 142.4 C75.3 124.7, 85.3 114.7, 100 100 C85.3 114.7, 75.3 124.7, 57.6 142.4 Z" />
     </svg>
 
     <div class="container hero-content">
       <div class="hero-logo-container reveal">
         <img src="logonew.png" alt="Sandhya Icon Logo" class="hero-logo">
       </div>
-      
+
       <div class="hero-text-box">
         <h1 class="hero-title reveal-words">
           Ancient Wisdom. Modern Living.
         </h1>
-        
+
         <p class="hero-subtitle reveal-words">
           A spiritual companion designed to help you align your days with stillness, ritual, and sacred daily rhythms.
         </p>
-        
+
         <div class="hero-actions reveal" style="transition-delay: 0.6s;">
           <a href="#journey" class="cta-button" id="hero-cta-primary">Join the Journey</a>
           <a href="#philosophy" class="cta-button outline" id="hero-cta-secondary">Explore Sandhya</a>
@@ -131,16 +144,18 @@
         <!-- Philosophy Site Preview Image -->
         <img src="new img.png" alt="Sandhya Sanctuary Preview" class="philosophy-image">
       </div>
-      
+
       <div class="philosophy-right">
         <p class="philosophy-pstrong reveal-words">
           Modern life creates noise. Ancient traditions created rhythm. Sandhya bridges the two.
         </p>
         <p class="philosophy-p reveal-words">
-          We believe spiritual growth shouldn't be about isolation or dogma. It is about integrating micro-moments of reflection, gratitude, and stillness into your active daily routing.
+          We believe spiritual growth shouldn't be about isolation or dogma. It is about integrating micro-moments of
+          reflection, gratitude, and stillness into your active daily routing.
         </p>
         <p class="philosophy-p reveal-words">
-          Sandhya helps you reconnect with intentional daily rituals, aligning your schedule with natural, planetary, and sacred times without requiring you to disconnect from the modern world.
+          Sandhya helps you reconnect with intentional daily rituals, aligning your schedule with natural, planetary,
+          and sacred times without requiring you to disconnect from the modern world.
         </p>
       </div>
     </div>
@@ -148,255 +163,295 @@
 
   <!-- Experience / Mockup Section -->
   <section class="experience" id="experience">
-    <div class="container">
-      <div style="text-align: center; margin-bottom: 2rem;">
-        <span class="philosophy-title-small">Core Experience</span>
-        <h2 class="section-title">A Sanctuary in Your Pocket</h2>
-        <p class="section-subtitle reveal-words" style="margin: 0 auto 3rem;">
-          Hover or tap on each pillar below to preview how Sandhya reframes your digital space.
-        </p>
-      </div>
-      
-      <div class="experience-grid">
-        <!-- Interactive Controls -->
-        <div class="experience-list">
-          
-          <button class="experience-item active" data-screen="panchang" id="exp-panchang" aria-expanded="true">
-            <span class="exp-num" aria-hidden="true">01</span>
-            <div class="exp-details">
-              <h3>Sacred Time</h3>
-              <p>Localized Panchang, Brahma Muhurta, solar transitions, and planetary hours aligned with custom alerts.</p>
+    <div class="experience-sticky-wrapper">
+      <div class="experience-sticky-container">
+        <div class="container">
+
+          <div style="text-align: center; margin-bottom: 2rem;">
+            <span class="philosophy-title-small">Core Experience</span>
+            <h2 class="section-title">A Sanctuary in Your Pocket</h2>
+            <p class="section-subtitle reveal-words" style="margin: 0 auto 3rem;">
+              Scroll to explore how Sandhya reframes your digital space.
+            </p>
+          </div>
+
+          <div class="experience-grid">
+            <!-- Interactive Controls -->
+            <div class="experience-list-wrapper">
+              <div class="experience-list">
+
+                <button class="experience-item active" data-screen="panchang" id="exp-panchang" aria-expanded="true">
+                  <span class="exp-num" aria-hidden="true">01</span>
+                  <div class="exp-details">
+                    <h3>Panchang Calendar</h3>
+                    <p>Understand auspicious times, tithis, Nakshatras, and solar transitions. A beautifully designed
+                      calendar showing active phases like Ekadashi or Dwadashi at a glance.</p>
+                  </div>
+                </button>
+
+                <button class="experience-item" data-screen="sadhana" id="exp-sadhana" aria-expanded="false">
+                  <span class="exp-num" aria-hidden="true">02</span>
+                  <div class="exp-details">
+                    <h3>Meditate with Sandhya</h3>
+                    <p>Anchor yourself with a minimalist meditation timer, a slow-breathing Om visualizer, and custom
+                      soundscapes for calm reflection.</p>
+                  </div>
+                </button>
+
+                <button class="experience-item" data-screen="dhyana" id="exp-dhyana" aria-expanded="false">
+                  <span class="exp-num" aria-hidden="true">03</span>
+                  <div class="exp-details">
+                    <h3>Rituals</h3>
+                    <p>Establish beautiful daily habits. Custom reminders tailored to natural and planetary transits,
+                      built to fit your lifestyle.</p>
+                  </div>
+                </button>
+
+                <button class="experience-item" data-screen="bhakti" id="exp-bhakti" aria-expanded="false">
+                  <span class="exp-num" aria-hidden="true">04</span>
+                  <div class="exp-details">
+                    <h3>Bhakti</h3>
+                    <p>Gentle morning calls, custom chants, devotional reminders, and tranquil waking alarms.</p>
+                  </div>
+                </button>
+
+                <button class="experience-item" data-screen="reflection" id="exp-reflection" aria-expanded="false">
+                  <span class="exp-num" aria-hidden="true">05</span>
+                  <div class="exp-details">
+                    <h3>Reflection</h3>
+                    <p>Track your self-awareness journey without turning growth into a competitive productivity contest.
+                    </p>
+                  </div>
+                </button>
+
+              </div>
             </div>
-          </button>
-          
-          <button class="experience-item" data-screen="sadhana" id="exp-sadhana" aria-expanded="false">
-            <span class="exp-num" aria-hidden="true">02</span>
-            <div class="exp-details">
-              <h3>Daily Sadhana</h3>
-              <p>Curate custom workflows of breath, contemplation, and rituals to establish beautiful habits.</p>
+
+            <!-- Premium simulated iOS mockup -->
+            <div class="experience-mockup-wrapper reveal">
+
+
+              <div class="phone-mockup" aria-label="iPhone application preview mockup">
+                <div class="phone-screen">
+
+                  <!-- Status bar elements -->
+                  <div class="phone-header">
+                    <div class="notch"></div>
+                    <span class="time" id="mockup-time">04:24</span>
+                    <div class="icons">
+                      <div class="icon-battery" aria-label="100% Battery life"></div>
+                    </div>
+                  </div>
+
+                  <!-- Screen 1: Panchang Calendar -->
+                  <div class="app-content active" id="screen-panchang">
+                    <div class="mockup-screen-inner">
+                      <div class="app-navbar">
+                        <img src="logonew.png" alt="Sandhya Icon" class="app-logo">
+                        <div class="app-menu-btn"><span></span><span></span><span></span></div>
+                      </div>
+
+                      <span class="panchang-date">June 2026</span>
+                      <h4 class="panchang-title">Panchang Calendar</h4>
+
+                      <div class="panchang-calendar-grid">
+                        <span class="cal-day-lbl">S</span><span class="cal-day-lbl">M</span><span
+                          class="cal-day-lbl">T</span><span class="cal-day-lbl">W</span><span
+                          class="cal-day-lbl">T</span><span class="cal-day-lbl">F</span><span
+                          class="cal-day-lbl">S</span>
+                        <span class="cal-day empty"></span><span class="cal-day empty"></span>
+                        <span class="cal-day">1</span><span class="cal-day">2</span><span class="cal-day">3</span><span
+                          class="cal-day">4</span><span class="cal-day">5</span>
+                        <span class="cal-day">6</span><span class="cal-day">7</span><span class="cal-day">8</span><span
+                          class="cal-day">9</span><span class="cal-day">10</span>
+                        <span class="cal-day ekadashi-day" title="Ekadashi">11 <span
+                            class="cal-tithi-badge">Ekadashi</span></span>
+                        <span class="cal-day">12</span><span class="cal-day">13</span><span
+                          class="cal-day">14</span><span class="cal-day">15</span><span class="cal-day">16</span><span
+                          class="cal-day">17</span><span class="cal-day">18</span>
+                        <span class="cal-day">19</span><span class="cal-day">20</span><span
+                          class="cal-day">21</span><span class="cal-day">22</span><span class="cal-day">23</span><span
+                          class="cal-day">24</span>
+                        <span class="cal-day dwadashi-day" title="Dwadashi">25 <span
+                            class="cal-tithi-badge">Dwadashi</span></span>
+                        <span class="cal-day">26</span><span class="cal-day">27</span><span
+                          class="cal-day">28</span><span class="cal-day">29</span><span class="cal-day">30</span>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <!-- Screen 2: Meditate with Sandhya -->
+                  <div class="app-content" id="screen-sadhana">
+                    <div class="mockup-screen-inner">
+                      <div class="app-navbar">
+                        <img src="logonew.png" alt="Sandhya Icon" class="app-logo">
+                        <div class="app-menu-btn"><span></span><span></span><span></span></div>
+                      </div>
+
+                      <h4 class="timer-title">Meditate</h4>
+                      <span class="timer-subtitle">Inner Space Connection</span>
+
+                      <div class="minimal-timer-container">
+                        <div class="timer-ring">
+                          <svg class="timer-ring-svg" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" class="timer-ring-bg" />
+                            <circle cx="50" cy="50" r="45" class="timer-ring-progress" id="timer-progress" />
+                          </svg>
+                          <div class="timer-center">
+                            <span class="timer-om">ॐ</span>
+                            <span class="timer-countdown">24:00</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="music-pill">
+                        <button class="music-ctrl-btn" aria-label="Skip backward">
+                          <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12">
+                            <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
+                          </svg>
+                        </button>
+                        <button class="music-ctrl-btn play-pause-btn" aria-label="Play or Pause">
+                          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" class="play-icon">
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </button>
+                        <button class="music-ctrl-btn" aria-label="Skip forward">
+                          <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12">
+                            <path d="M6 18l8.5-6L6 6zm9-12h2v12h-2z" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <!-- Screen 3: Rituals -->
+                  <div class="app-content" id="screen-dhyana">
+                    <div class="mockup-screen-inner">
+                      <div class="app-navbar">
+                        <img src="logonew.png" alt="Sandhya Icon" class="app-logo">
+                        <div class="app-menu-btn"><span></span><span></span><span></span></div>
+                      </div>
+
+                      <h4 class="rituals-title">Custom Rituals</h4>
+                      <span class="rituals-subtitle">Rhythms aligned with transits</span>
+
+                      <div class="rituals-list">
+                        <div class="ritual-card active">
+                          <div class="ritual-info">
+                            <h5>Brahma Muhurta Silence</h5>
+                            <p>Every Dawn • 4:20 AM</p>
+                          </div>
+                          <div class="ritual-toggle active"></div>
+                        </div>
+                        <div class="ritual-card">
+                          <div class="ritual-info">
+                            <h5>Solar Noon Alignment</h5>
+                            <p>Zenith Transit • 12:14 PM</p>
+                          </div>
+                          <div class="ritual-toggle"></div>
+                        </div>
+                        <div class="ritual-card active">
+                          <div class="ritual-info">
+                            <h5>Twilight Sandhya Contemplation</h5>
+                            <p>Dusk Transit • 6:58 PM</p>
+                          </div>
+                          <div class="ritual-toggle active"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <!-- Screen 4: Bhakti -->
+                  <div class="app-content" id="screen-bhakti">
+                    <div class="app-navbar">
+                      <img src="logonew.png" alt="Sandhya Icon" class="app-logo">
+                      <div class="app-menu-btn"><span></span><span></span><span></span></div>
+                    </div>
+
+                    <div class="bhakti-header">
+                      <h4 class="bhakti-title">Bhakti Alarms</h4>
+                      <span class="sadhana-subtitle">Sacred awakening sounds</span>
+                    </div>
+
+                    <div class="bhakti-wave-container">
+                      <span class="bhakti-wave-bar"></span>
+                      <span class="bhakti-wave-bar"></span>
+                      <span class="bhakti-wave-bar"></span>
+                      <span class="bhakti-wave-bar"></span>
+                      <span class="bhakti-wave-bar"></span>
+                      <span class="bhakti-wave-bar"></span>
+                      <span class="bhakti-wave-bar"></span>
+                    </div>
+
+                    <div class="bhakti-alarm-card">
+                      <div>
+                        <span class="alarm-time">04:20 AM</span>
+                        <p class="alarm-label">Brahma Muhurta</p>
+                      </div>
+                      <div class="alarm-toggle" aria-label="Alarm switch active">
+                        <span class="alarm-toggle-circle"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Screen 5: Reflection -->
+                  <div class="app-content" id="screen-reflection">
+                    <div class="app-navbar">
+                      <img src="logonew.png" alt="Sandhya Icon" class="app-logo">
+                      <div class="app-menu-btn"><span></span><span></span><span></span></div>
+                    </div>
+
+                    <h4 class="reflection-title">Daily Reflection</h4>
+                    <span class="reflection-date">June 1st, 2026</span>
+
+                    <div class="reflection-box">
+                      <p class="reflection-quote-daily">
+                        "Stillness is not the absence of sound, but the presence of self."
+                      </p>
+                      <p class="reflection-input-sim" id="typewriter-text">
+                        Today I felt a profound sense of clarity during Brahma Muhurta. The morning air was cool, and
+                        the stillness...<span class="reflection-cursor"></span>
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="phone-home-indicator" aria-hidden="true"></div>
+                </div>
+              </div>
             </div>
-          </button>
-          
-          <button class="experience-item" data-screen="dhyana" id="exp-dhyana" aria-expanded="false">
-            <span class="exp-num" aria-hidden="true">03</span>
-            <div class="exp-details">
-              <h3>Dhyana</h3>
-              <p>Custom sensory meditation tools featuring a slow-breathing visualizer and serene ambient sounds.</p>
+
+          </div>
+
+          <!-- Mobile Active Text Block Container -->
+          <div class="experience-mobile-active-text" aria-live="polite">
+            <div class="mobile-text-item active" data-index="0">
+              <h3>Panchang Calendar</h3>
+              <p>Understand auspicious times, tithis, Nakshatras, and solar transitions. A beautifully designed calendar
+                showing active phases like Ekadashi or Dwadashi at a glance.</p>
             </div>
-          </button>
-          
-          <button class="experience-item" data-screen="bhakti" id="exp-bhakti" aria-expanded="false">
-            <span class="exp-num" aria-hidden="true">04</span>
-            <div class="exp-details">
+            <div class="mobile-text-item" data-index="1">
+              <h3>Meditate with Sandhya</h3>
+              <p>Anchor yourself with a minimalist meditation timer, a slow-breathing Om visualizer, and custom
+                soundscapes for calm reflection.</p>
+            </div>
+            <div class="mobile-text-item" data-index="2">
+              <h3>Rituals</h3>
+              <p>Establish beautiful daily habits. Custom reminders tailored to natural and planetary transits, built to
+                fit your lifestyle.</p>
+            </div>
+            <div class="mobile-text-item" data-index="3">
               <h3>Bhakti</h3>
               <p>Gentle morning calls, custom chants, devotional reminders, and tranquil waking alarms.</p>
             </div>
-          </button>
-          
-          <button class="experience-item" data-screen="reflection" id="exp-reflection" aria-expanded="false">
-            <span class="exp-num" aria-hidden="true">05</span>
-            <div class="exp-details">
+            <div class="mobile-text-item" data-index="4">
               <h3>Reflection</h3>
               <p>Track your self-awareness journey without turning growth into a competitive productivity contest.</p>
             </div>
-          </button>
-          
-        </div>
-        
-        <!-- Premium simulated iOS mockup -->
-        <div class="experience-mockup-wrapper reveal">
-          <div class="phone-mockup" aria-label="iPhone application preview mockup">
-            <div class="phone-screen">
-              
-              <!-- Status bar elements -->
-              <div class="phone-header">
-                <div class="notch"></div>
-                <span class="time" id="mockup-time">04:24</span>
-                <div class="icons">
-                  <div class="icon-battery" aria-label="100% Battery life"></div>
-                </div>
-              </div>
-              
-              <!-- Screen 1: Sacred Time (Panchang) -->
-              <div class="app-content active" id="screen-panchang">
-                <div class="app-navbar">
-                  <img src="logonew.png" alt="Sandhya Icon" class="app-logo">
-                  <div class="app-menu-btn"><span></span><span></span><span></span></div>
-                </div>
-                
-                <span class="panchang-date">Pradosha Vrat • Brahma Muhurta</span>
-                <h4 class="panchang-title">Sacred Rhythms</h4>
-                
-                <div class="panchang-dial-container">
-                  <div class="panchang-dial">
-                    <span class="dial-marker"></span>
-                    <span class="dial-marker-2"></span>
-                  </div>
-                  <div class="dial-center">
-                    <span class="dial-time">04:24</span>
-                    <span class="dial-period">Brahma Muhurta</span>
-                  </div>
-                </div>
-                
-                <div class="panchang-details">
-                  <div class="panchang-stat">
-                    <span class="stat-label">Sunrise</span>
-                    <span class="stat-val">05:42 AM</span>
-                  </div>
-                  <div class="panchang-stat">
-                    <span class="stat-label">Sunset</span>
-                    <span class="stat-val">06:58 PM</span>
-                  </div>
-                  <div class="panchang-stat">
-                    <span class="stat-label">Tithi</span>
-                    <span class="stat-val">Dwadashi</span>
-                  </div>
-                  <div class="panchang-stat">
-                    <span class="stat-label">Nakshatra</span>
-                    <span class="stat-val">Rohini</span>
-                  </div>
-                </div>
-              </div>
-              
-              <!-- Screen 2: Daily Sadhana -->
-              <div class="app-content" id="screen-sadhana">
-                <div class="app-navbar">
-                  <img src="logonew.png" alt="Sandhya Icon" class="app-logo">
-                  <div class="app-menu-btn"><span></span><span></span><span></span></div>
-                </div>
-                
-                <div class="sadhana-header">
-                  <h4 class="sadhana-title">Daily Sadhana</h4>
-                  <span class="sadhana-subtitle">Rhythms for today</span>
-                </div>
-                
-                <div class="sadhana-progress-card">
-                  <div class="progress-ring-container">
-                    <svg class="progress-ring-svg">
-                      <circle class="progress-ring-circle-bg" cx="20" cy="20" r="18"></circle>
-                      <circle class="progress-ring-circle" cx="20" cy="20" r="18" id="sadhana-ring"></circle>
-                    </svg>
-                    <span class="progress-text">3/5</span>
-                  </div>
-                  <div class="progress-info">
-                    <h4>Flow Centered</h4>
-                    <p>60% of today's rituals complete</p>
-                  </div>
-                </div>
-                
-                <div class="sadhana-list">
-                  <div class="sadhana-item">
-                    <div class="sadhana-item-left">
-                      <span class="checkbox-circle checked"></span>
-                      <span class="sadhana-item-name">Brahma Muhurta Silence</span>
-                    </div>
-                    <span class="sadhana-item-time">15m</span>
-                  </div>
-                  
-                  <div class="sadhana-item">
-                    <div class="sadhana-item-left">
-                      <span class="checkbox-circle checked"></span>
-                      <span class="sadhana-item-name">Nadi Shodhana Pranayama</span>
-                    </div>
-                    <span class="sadhana-item-time">10m</span>
-                  </div>
-
-                  <div class="sadhana-item">
-                    <div class="sadhana-item-left">
-                      <span class="checkbox-circle checked"></span>
-                      <span class="sadhana-item-name">Morning Journal Pause</span>
-                    </div>
-                    <span class="sadhana-item-time">5m</span>
-                  </div>
-                  
-                  <div class="sadhana-item">
-                    <div class="sadhana-item-left">
-                      <span class="checkbox-circle"></span>
-                      <span class="sadhana-item-name">Twilight Contemplation</span>
-                    </div>
-                    <span class="sadhana-item-time">20m</span>
-                  </div>
-                </div>
-              </div>
-              
-              <!-- Screen 3: Dhyana -->
-              <div class="app-content" id="screen-dhyana">
-                <div class="app-navbar">
-                  <img src="logonew.png" alt="Sandhya Icon" class="app-logo">
-                  <div class="app-menu-btn"><span></span><span></span><span></span></div>
-                </div>
-                
-                <h4 class="dhyana-title">Dhyana Space</h4>
-                <span class="dhyana-subtitle">Calm breathing anchor</span>
-                
-                <div class="breathing-container">
-                  <div class="breathing-ring-outer"></div>
-                  <div class="breathing-ring-inner">
-                    <span class="breathing-text" id="breathing-text">Breathe In</span>
-                  </div>
-                </div>
-                
-                <div class="dhyana-controls">
-                  <button class="dhyana-btn">Soothing Ambient</button>
-                </div>
-              </div>
-              
-              <!-- Screen 4: Bhakti -->
-              <div class="app-content" id="screen-bhakti">
-                <div class="app-navbar">
-                  <img src="logonew.png" alt="Sandhya Icon" class="app-logo">
-                  <div class="app-menu-btn"><span></span><span></span><span></span></div>
-                </div>
-                
-                <div class="bhakti-header">
-                  <h4 class="bhakti-title">Bhakti Alarms</h4>
-                  <span class="sadhana-subtitle">Sacred awakening sounds</span>
-                </div>
-                
-                <div class="bhakti-wave-container">
-                  <span class="bhakti-wave-bar"></span>
-                  <span class="bhakti-wave-bar"></span>
-                  <span class="bhakti-wave-bar"></span>
-                  <span class="bhakti-wave-bar"></span>
-                  <span class="bhakti-wave-bar"></span>
-                  <span class="bhakti-wave-bar"></span>
-                  <span class="bhakti-wave-bar"></span>
-                </div>
-                
-                <div class="bhakti-alarm-card">
-                  <div>
-                    <span class="alarm-time">04:20 AM</span>
-                    <p class="alarm-label">Brahma Muhurta</p>
-                  </div>
-                  <div class="alarm-toggle" aria-label="Alarm switch active">
-                    <span class="alarm-toggle-circle"></span>
-                  </div>
-                </div>
-              </div>
-              
-              <!-- Screen 5: Reflection -->
-              <div class="app-content" id="screen-reflection">
-                <div class="app-navbar">
-                  <img src="logonew.png" alt="Sandhya Icon" class="app-logo">
-                  <div class="app-menu-btn"><span></span><span></span><span></span></div>
-                </div>
-                
-                <h4 class="reflection-title">Daily Reflection</h4>
-                <span class="reflection-date">June 1st, 2026</span>
-                
-                <div class="reflection-box">
-                  <p class="reflection-quote-daily">
-                    "Stillness is not the absence of sound, but the presence of self."
-                  </p>
-                  <p class="reflection-input-sim" id="typewriter-text">
-                    Today I felt a profound sense of clarity during Brahma Muhurta. The morning air was cool, and the stillness...<span class="reflection-cursor"></span>
-                  </p>
-                </div>
-              </div>
-              
-              <div class="phone-home-indicator" aria-hidden="true"></div>
-            </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -413,7 +468,8 @@
         A modern path to sacred living.
       </h2>
       <p class="promise-subtext reveal-words">
-        Sandhya exists to help you build a life guided by presence rather than distraction. We bring ancient disciplines into contemporary spaces with beauty, grace, and reverent silence.
+        Sandhya exists to help you build a life guided by presence rather than distraction. We bring ancient disciplines
+        into contemporary spaces with beauty, grace, and reverent silence.
       </p>
     </div>
   </section>
@@ -428,15 +484,16 @@
           Take a closer look at the intentional visual systems inside the Sandhya application.
         </p>
       </div>
-      
+
       <div class="previews-grid">
-        
+
         <!-- Card 1: Home Dashboard -->
         <div class="preview-card reveal">
           <div class="preview-card-info">
             <span class="preview-card-tag">Living Altar</span>
             <h3 class="preview-card-title">Home Sanctuary</h3>
-            <p class="preview-card-desc">An elegant home dashboard that changes with the solar cycle, reflecting the exact spiritual energy of the present hour.</p>
+            <p class="preview-card-desc">An elegant home dashboard that changes with the solar cycle, reflecting the
+              exact spiritual energy of the present hour.</p>
           </div>
           <div class="preview-mock-ui ui-home-dashboard" aria-hidden="true">
             <div class="ui-home-header">
@@ -461,14 +518,16 @@
           <div class="preview-card-info">
             <span class="preview-card-tag">Sound Awakening</span>
             <h3 class="preview-card-title">Sacred Alarms</h3>
-            <p class="preview-card-desc">Awaken to specialized micro-tuned Indian bamboo flutes (Bansuri), Vedic chants, and Tibetan singing bowls tuned to the natural frequency of dawn.</p>
+            <p class="preview-card-desc">Awaken to specialized micro-tuned Indian bamboo flutes (Bansuri), Vedic chants,
+              and Tibetan singing bowls tuned to the natural frequency of dawn.</p>
           </div>
           <div class="preview-mock-ui ui-bhakti-alarm" aria-hidden="true">
             <div class="ui-alarm-circle">
               <span class="ui-alarm-time">04:20</span>
               <span class="ui-alarm-label">Bansuri</span>
             </div>
-            <span style="font-size: 0.75rem; color: var(--color-bronze); font-style: italic;">Calm waking sequence</span>
+            <span style="font-size: 0.75rem; color: var(--color-bronze); font-style: italic;">Calm waking
+              sequence</span>
           </div>
         </div>
 
@@ -481,13 +540,16 @@
     <div class="container closing-cta-content">
       <h2 class="closing-title reveal-words">Begin Your Journey.</h2>
       <p class="closing-subtitle reveal-words">
-        Small daily rituals create profound transformations. Sign up to secure early access and experience Sandhya first.
+        Small daily rituals create profound transformations. Sign up to secure early access and experience Sandhya
+        first.
       </p>
-      
+
       <!-- Premium signup portal -->
-      <form class="signup-form reveal" style="transition-delay: 0.4s;" id="early-access-form" action="#" method="POST" onsubmit="event.preventDefault(); alert('Thank you for joining the journey. You have been reserved a sacred spot.');">
+      <form class="signup-form reveal" style="transition-delay: 0.4s;" id="early-access-form" action="#" method="POST"
+        onsubmit="event.preventDefault(); alert('Thank you for joining the journey. You have been reserved a sacred spot.');">
         <div class="signup-input-group">
-          <input type="email" class="signup-input" placeholder="Enter your email address" aria-label="Email address for early access" required>
+          <input type="email" class="signup-input" placeholder="Enter your email address"
+            aria-label="Email address for early access" required>
           <button type="submit" class="signup-submit">Submit</button>
         </div>
         <p class="signup-hint">Available on iOS and Android late Summer 2026. Private invite only.</p>
@@ -501,24 +563,30 @@
       <nav class="footer-nav" aria-label="Footer Navigation">
         <a href="#journey" class="footer-link" id="footer-link-downloads">Downloads</a>
         <a href="#philosophy" class="footer-link" id="footer-link-philosophy">Philosophy</a>
-        
+
         <!-- Social Media Navigation Icons -->
         <div class="footer-socials" id="footer-social-container">
-          <a href="https://instagram.com" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="footer-social-link"
+            aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
               <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
             </svg>
           </a>
-          <a href="https://x.com" target="_blank" rel="noopener" class="footer-social-link" aria-label="X (formerly Twitter)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <a href="https://x.com" target="_blank" rel="noopener" class="footer-social-link"
+            aria-label="X (formerly Twitter)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
               <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
               <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
             </svg>
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <a href="https://linkedin.com" target="_blank" rel="noopener" class="footer-social-link"
+            aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
               <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
               <rect x="2" y="9" width="4" height="12"></rect>
               <circle cx="4" cy="4" r="2"></circle>
@@ -526,9 +594,11 @@
           </a>
         </div>
       </nav>
-      <p class="copyright" id="footer-copyright-text">© 2026 Sandhya. All rights reserved. A modern path to sacred living.</p>
+      <p class="copyright" id="footer-copyright-text">© 2026 Sandhya. All rights reserved. A modern path to sacred
+        living.</p>
     </div>
   </footer>
   <script src="app.js"></script>
 </body>
+
 </html>

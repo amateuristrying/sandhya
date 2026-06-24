@@ -140,39 +140,115 @@ function initParticleSystem() {
  * Dynamic Mockup swap & interactive animations
  */
 function initMockupController() {
+  const wrapper = document.querySelector('.experience-sticky-wrapper');
   const items = document.querySelectorAll('.experience-item');
   const screens = document.querySelectorAll('.app-content');
-  
-  // Custom states/variables to handle unique animations per screen
+  const mobileTexts = document.querySelectorAll('.mobile-text-item');
+  const grid = document.querySelector('.experience-grid');
+
+  if (!wrapper || items.length === 0) return;
+
   let reflectionTimer = null;
+  let timerInterval = null;
+  let activeIndex = 0;
 
-  items.forEach(item => {
-    // Hover/Click to trigger
-    const triggerEvent = () => {
-      if (item.classList.contains('active')) return;
+  // Handle scroll progress and update active state
+  function updateMockupOnScroll() {
+    const rect = wrapper.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
 
-      // Update button list
-      items.forEach(btn => {
-        btn.classList.remove('active');
-        btn.setAttribute('aria-expanded', 'false');
+    // Calculate total height that can be scrolled through
+    const totalScrollable = rect.height - windowHeight;
+    if (totalScrollable <= 0) return;
+
+    // Current scroll relative to wrapper top
+    const currentScroll = -rect.top;
+
+    // Get progress percentage (0 to 1)
+    let progress = currentScroll / totalScrollable;
+    progress = Math.max(0, Math.min(1, progress));
+
+    const totalSteps = items.length;
+    let index = Math.floor(progress * totalSteps);
+    if (index >= totalSteps) index = totalSteps - 1;
+    if (index < 0) index = 0;
+
+    // Only update if index has changed to prevent recalculations and resets
+    if (index !== activeIndex) {
+      setActiveStep(index);
+    }
+  }
+
+  function setActiveStep(index) {
+    activeIndex = index;
+
+    // 0. Update grid active step class for CSS transitions
+    if (grid) {
+      items.forEach((_, idx) => {
+        grid.classList.remove(`active-step-${idx}`);
       });
-      item.classList.add('active');
-      item.setAttribute('aria-expanded', 'true');
+      grid.classList.add(`active-step-${index}`);
+    }
 
-      // Swap active screen inside phone
-      const targetScreen = item.getAttribute('data-screen');
-      screens.forEach(screen => screen.classList.remove('active'));
-      
-      const activeScreenEl = document.getElementById(`screen-${targetScreen}`);
-      if (activeScreenEl) {
-        activeScreenEl.classList.add('active');
-        triggerSpecialScreenAnimation(targetScreen, activeScreenEl);
+    // 1. Highlight desktop list items
+    items.forEach((item, idx) => {
+      if (idx === index) {
+        item.classList.add('active');
+        item.setAttribute('aria-expanded', 'true');
+      } else {
+        item.classList.remove('active');
+        item.setAttribute('aria-expanded', 'false');
       }
-    };
+    });
 
-    item.addEventListener('click', triggerEvent);
-    item.addEventListener('mouseenter', triggerEvent);
+    // 2. Transition phone mockup screens
+    screens.forEach((screen, idx) => {
+      if (idx === index) {
+        screen.classList.add('active');
+        triggerSpecialScreenAnimation(screen.getAttribute('id').replace('screen-', ''), screen);
+      } else {
+        screen.classList.remove('active');
+      }
+    });
+
+    // 3. Transition mobile text blocks
+    mobileTexts.forEach((text, idx) => {
+      if (idx === index) {
+        text.classList.add('active');
+      } else {
+        text.classList.remove('active');
+      }
+    });
+  }
+
+  // Bind click listeners for smooth navigation
+  items.forEach((item, idx) => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const rect = wrapper.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const totalScrollable = rect.height - windowHeight;
+      const wrapperTop = rect.top + window.pageYOffset;
+
+      // Calculate center of scroll region for this step
+      const totalSteps = items.length;
+      const targetProgress = (idx + 0.5) / totalSteps;
+      const targetScroll = wrapperTop + (totalScrollable * targetProgress);
+
+      window.scrollTo({
+        top: targetScroll,
+        behavior: 'smooth'
+      });
+    });
   });
+
+  // Track window scroll
+  window.addEventListener('scroll', updateMockupOnScroll, { passive: true });
+  window.addEventListener('resize', updateMockupOnScroll, { passive: true });
+
+  // Initial trigger
+  updateMockupOnScroll();
 
   // Unique trigger setups for each preview screen
   function triggerSpecialScreenAnimation(screenName, element) {
@@ -181,16 +257,40 @@ function initMockupController() {
       clearInterval(reflectionTimer);
       reflectionTimer = null;
     }
+    // Stop ongoing meditation timers
+    if (timerInterval) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
 
     if (screenName === 'sadhana') {
-      // Trigger SVG progress ring animation
-      const ring = document.getElementById('sadhana-ring');
-      if (ring) {
-        ring.style.strokeDashoffset = '113';
-        // Force reflow
-        ring.getBoundingClientRect();
-        ring.style.strokeDashoffset = '45'; // Fill to 60%
+      // Start meditation countdown timer and animate circle
+      const countdownEl = element.querySelector('.timer-countdown');
+      const progressCircle = element.querySelector('#timer-progress');
+      if (!countdownEl) return;
+
+      let secondsLeft = 24 * 60; // 24 minutes
+      countdownEl.textContent = "24:00";
+
+      if (progressCircle) {
+        progressCircle.style.transition = 'none';
+        progressCircle.style.strokeDashoffset = '283';
+        progressCircle.getBoundingClientRect(); // force reflow
+        progressCircle.style.transition = 'stroke-dashoffset 1440s linear';
+        progressCircle.style.strokeDashoffset = '0';
       }
+
+      timerInterval = setInterval(() => {
+        secondsLeft--;
+        if (secondsLeft <= 0) {
+          clearInterval(timerInterval);
+          secondsLeft = 0;
+        }
+        const mins = Math.floor(secondsLeft / 60);
+        const secs = secondsLeft % 60;
+        countdownEl.textContent = `${mins < 10 ? '0' + mins : mins}:${secs < 10 ? '0' + secs : secs}`;
+      }, 1000);
+
     } else if (screenName === 'reflection') {
       // Trigger typewriter effect on reflection box
       const textContainer = document.getElementById('typewriter-text');
@@ -210,6 +310,7 @@ function initMockupController() {
       }
     }
   }
+
 }
 
 /**
@@ -244,12 +345,12 @@ function initAudioSanctuary() {
       // 1. Initialize AudioContext
       const AudioContextClass = window.AudioContext || window.webkitAudioContext;
       audioCtx = new AudioContextClass();
-      
+
       // 2. Setup Master volume with smooth ramp
       masterGain = audioCtx.createGain();
       masterGain.gain.setValueAtTime(0, audioCtx.currentTime);
       masterGain.connect(audioCtx.destination);
-      
+
       // Fade in master volume over 2.5 seconds
       masterGain.gain.linearRampToValueAtTime(0.35, audioCtx.currentTime + 2.5);
 
@@ -257,14 +358,14 @@ function initAudioSanctuary() {
       // Left ear channel oscillator
       const pannerLeft = audioCtx.createStereoPanner ? audioCtx.createStereoPanner() : null;
       if (pannerLeft) pannerLeft.pan.setValueAtTime(-0.8, audioCtx.currentTime);
-      
+
       osc1 = audioCtx.createOscillator();
       osc1.type = 'sine';
       osc1.frequency.setValueAtTime(110, audioCtx.currentTime); // A2 fundamental
-      
+
       const osc1Gain = audioCtx.createGain();
       osc1Gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
-      
+
       osc1.connect(osc1Gain);
       if (pannerLeft) {
         osc1Gain.connect(pannerLeft);
@@ -276,14 +377,14 @@ function initAudioSanctuary() {
       // Right ear channel oscillator
       const pannerRight = audioCtx.createStereoPanner ? audioCtx.createStereoPanner() : null;
       if (pannerRight) pannerRight.pan.setValueAtTime(0.8, audioCtx.currentTime);
-      
+
       osc2 = audioCtx.createOscillator();
       osc2.type = 'sine';
       osc2.frequency.setValueAtTime(111.5, audioCtx.currentTime); // Binaural beat delta
-      
+
       const osc2Gain = audioCtx.createGain();
       osc2Gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
-      
+
       osc2.connect(osc2Gain);
       if (pannerRight) {
         osc2Gain.connect(pannerRight);
@@ -320,11 +421,11 @@ function initAudioSanctuary() {
       noiseNode.connect(windFilter);
       windFilter.connect(windGain);
       windGain.connect(masterGain);
-      
+
       // LFO to sweep the filter frequency slowly (breathing effect)
       windLFO = audioCtx.createOscillator();
       windLFO.frequency.setValueAtTime(0.08, audioCtx.currentTime); // Very slow sweep (12s cycle)
-      
+
       const lfoGain = audioCtx.createGain();
       lfoGain.gain.setValueAtTime(250, audioCtx.currentTime); // Sweep radius (500Hz +/- 250Hz)
 
@@ -362,7 +463,7 @@ function initAudioSanctuary() {
       // Drop volume for higher harmonics
       const volume = idx === 0 ? 0.08 : idx === 1 ? 0.05 : 0.02;
       chimeGain.gain.setValueAtTime(0, now);
-      
+
       // Fast strike attack, ultra slow decay (luxury chime fade-out)
       chimeGain.gain.linearRampToValueAtTime(volume, now + 0.1);
       chimeGain.gain.exponentialRampToValueAtTime(0.0001, now + 9 - (idx * 0.5));
@@ -388,9 +489,9 @@ function initAudioSanctuary() {
       if (noiseNode) { noiseNode.stop(); noiseNode.disconnect(); }
       if (windLFO) { windLFO.stop(); windLFO.disconnect(); }
       if (bowlInterval) clearInterval(bowlInterval);
-      
+
       if (audioCtx) audioCtx.close();
-      
+
       audioCtx = null;
       isPlaying = false;
       toggleBtn.classList.remove('active');
@@ -410,7 +511,7 @@ function initWordReveal() {
     const text = el.textContent.trim();
     // Split by whitespace
     const words = text.split(/\s+/);
-    
+
     el.innerHTML = words.map((word, idx) => {
       // Calculate delay (40ms cascade increment per word)
       const delay = idx * 40;
