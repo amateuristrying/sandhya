@@ -576,6 +576,7 @@ header {
 .experience {
   background-color: var(--bg-primary);
   position: relative;
+  z-index: 5;
   scroll-snap-align: start;
 }
 
@@ -593,7 +594,7 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: var(--section-padding) 0;
+  padding: 8rem 0;
 }
 
 .experience-grid {
