@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMockupController();
   initAudioSanctuary();
   initWordReveal();
+  initScrollLock();
 });
 
 /**
@@ -550,6 +551,202 @@ function initWordReveal() {
     } else {
       // Otherwise, let the scroll observer reveal it
       wordObserver.observe(el);
+    }
+  });
+}
+
+/**
+ * Scroll Lock / Snap Controller
+ * Implements full page scroll hijacking where user scrolling locks into
+ * individual sections sequentially and centers them on the viewport.
+ */
+function initScrollLock() {
+  // Disable native snap alignments to prevent conflicts
+  document.querySelectorAll('section, footer').forEach(el => {
+    el.style.scrollSnapAlign = 'none';
+  });
+
+  const sections = Array.from(document.querySelectorAll('section'));
+  let currentSectionIndex = 0;
+  let isAnimating = false;
+
+  // Find initial active section based on current scroll position
+  function updateIndexFromScroll() {
+    const currentScroll = window.pageYOffset;
+    const viewportCenter = currentScroll + (window.innerHeight / 2);
+    
+    let closestIndex = 0;
+    let minDistance = Infinity;
+    
+    sections.forEach((section, idx) => {
+      const sectionCenter = section.offsetTop + (section.offsetHeight / 2);
+      const distance = Math.abs(viewportCenter - sectionCenter);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestIndex = idx;
+      }
+    });
+    
+    currentSectionIndex = closestIndex;
+  }
+  
+  updateIndexFromScroll();
+
+  function easeInOutCubic(t, b, c, d) {
+    t /= d/2;
+    if (t < 1) return c/2*t*t*t + b;
+    t -= 2;
+    return c/2*(t*t*t + 2) + b;
+  }
+
+  function scrollToPosition(targetY, duration = 1200, callback) {
+    const startY = window.pageYOffset;
+    const difference = targetY - startY;
+    let startTime = null;
+
+    function animation(currentTime) {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const run = easeInOutCubic(timeElapsed, startY, difference, duration);
+      window.scrollTo(0, run);
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      } else {
+        window.scrollTo(0, targetY);
+        if (callback) callback();
+      }
+    }
+
+    requestAnimationFrame(animation);
+  }
+
+  function goToSection(index) {
+    if (isAnimating) return;
+    if (index < 0 || index >= sections.length) return;
+
+    isAnimating = true;
+    currentSectionIndex = index;
+
+    const targetSection = sections[index];
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+    let targetScroll;
+    // If it's the last section (closing-cta / footer), scroll all the way to bottom
+    if (index === sections.length - 1) {
+      targetScroll = maxScroll;
+    } else {
+      targetScroll = targetSection.offsetTop + (targetSection.offsetHeight / 2) - (window.innerHeight / 2);
+      targetScroll = Math.max(0, Math.min(maxScroll, targetScroll));
+    }
+
+    scrollToPosition(targetScroll, 1200, () => {
+      isAnimating = false;
+    });
+  }
+
+  // 1. Mouse Wheel Handler (block scroll hijacking delta threshold)
+  window.addEventListener('wheel', (e) => {
+    e.preventDefault();
+
+    if (isAnimating) return;
+
+    if (Math.abs(e.deltaY) < 15) return;
+
+    if (e.deltaY > 0) {
+      if (currentSectionIndex < sections.length - 1) {
+        goToSection(currentSectionIndex + 1);
+      }
+    } else {
+      if (currentSectionIndex > 0) {
+        goToSection(currentSectionIndex - 1);
+      }
+    }
+  }, { passive: false });
+
+  // 2. Mobile Touch Swipe Handler
+  let touchStartY = 0;
+  window.addEventListener('touchstart', (e) => {
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  window.addEventListener('touchmove', (e) => {
+    if (e.cancelable) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  window.addEventListener('touchend', (e) => {
+    if (isAnimating) return;
+
+    const touchEndY = e.changedTouches[0].clientY;
+    const diffY = touchStartY - touchEndY;
+
+    if (Math.abs(diffY) > 50) {
+      if (diffY > 0) {
+        if (currentSectionIndex < sections.length - 1) {
+          goToSection(currentSectionIndex + 1);
+        }
+      } else {
+        if (currentSectionIndex > 0) {
+          goToSection(currentSectionIndex - 1);
+        }
+      }
+    }
+  }, { passive: true });
+
+  // 3. Keyboard Handler (Arrow keys, space, page up/down)
+  window.addEventListener('keydown', (e) => {
+    // Exclude typing inside form fields
+    const activeEl = document.activeElement;
+    if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA')) {
+      return;
+    }
+
+    const keys = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', ' '];
+    if (keys.includes(e.key)) {
+      e.preventDefault();
+      if (isAnimating) return;
+
+      if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+        if (currentSectionIndex < sections.length - 1) {
+          goToSection(currentSectionIndex + 1);
+        }
+      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        if (currentSectionIndex > 0) {
+          goToSection(currentSectionIndex - 1);
+        }
+      }
+    }
+  }, { passive: false });
+
+  // 4. Intercept clicks on links to keep current index synced
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        e.preventDefault();
+
+        let targetIndex = -1;
+        sections.forEach((sec, idx) => {
+          if (sec === targetElement || sec.contains(targetElement)) {
+            targetIndex = idx;
+          }
+        });
+
+        if (targetIndex !== -1) {
+          goToSection(targetIndex);
+        }
+      }
+    });
+  });
+
+  // 5. Update index after viewport resizing
+  window.addEventListener('resize', () => {
+    if (!isAnimating) {
+      updateIndexFromScroll();
     }
   });
 }
